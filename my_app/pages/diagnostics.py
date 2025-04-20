@@ -167,7 +167,7 @@ if "selection" not in st.session_state:
 if "pairs" not in st.session_state:
     st.session_state.pairs = []
 
-st.title("Character Tile Matcher")
+st.markdown("Select the correct alternating sequence starting from 1: (1 → A, 2 → B, ...)")
 
 # Display the grid
 cols = st.columns(5)
@@ -185,7 +185,7 @@ if len(st.session_state.selection) == 2:
     st.session_state.selection = []  # Clear selection for the next round
     
 # Add a reset button
-if st.button("Reset Game"):
+if st.button("Reset"):
     st.session_state.shuffled = random.sample(characters, len(characters))
     st.session_state.selection = []
     st.session_state.pairs = []

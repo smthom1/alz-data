@@ -39,27 +39,27 @@ if __name__ == '__main__':
     questions.append(q.text)
     sd.caption(q.text)
 
-    sd.write("Question 2a Results:")
-    q = client.models.generate_content(
-        model='gemini-2.0-flash',
-        contents=[
-            'Is the object in the image similar to a ' + str(sampleResults["image_1_answer"]) + '?',
-            Image.open("Wreathe.png")
-        ]
-    )
-    questions.append(q.text)
-    sd.caption(q.text)
+    # sd.write("Question 2a Results:")
+    # q = client.models.generate_content(
+    #     model='gemini-2.0-flash',
+    #     contents=[
+    #         'Is the object in the image similar to a ' + str(sampleResults["image_1_answer"]) + '?',
+    #         Image.open("Wreathe.png")
+    #     ]
+    # )
+    # questions.append(q.text)
+    # sd.caption(q.text)
 
-    sd.write("Question 2b Results:")
-    q = client.models.generate_content(
-        model='gemini-2.0-flash',
-        contents=[
-            'Is the object in the image similar to a ' + sampleResults["image_2_answer"] + '?',
-            Image.open("Volcano.png")
-        ]
-    )
-    questions.append(q.text)
-    sd.caption(q.text)
+    # sd.write("Question 2b Results:")
+    # q = client.models.generate_content(
+    #     model='gemini-2.0-flash',
+    #     contents=[
+    #         'Is the object in the image similar to a ' + sampleResults["image_2_answer"] + '?',
+    #         Image.open("Volcano.png")
+    #     ]
+    # )
+    # questions.append(q.text)
+    # sd.caption(q.text)
 
     sd.write("Question 3a Results:")
     q = questionDivider.send_message(
@@ -137,6 +137,15 @@ if __name__ == '__main__':
         if right.button("Other Suggestions", use_container_width=True, type="secondary"):
             right.markdown("Opens advanced page")
 
+if st.button("Go to Game Hub for cognitively impaired"):
+            st.markdown("""
+                <meta http-equiv="refresh" content="2;url=/m_impaired" />
+            """, unsafe_allow_html=True)
+
+if st.button("Go to Game Hub for cognitively normal"):
+            st.markdown("""
+                <meta http-equiv="refresh" content="2;url=/m_normal" />
+            """, unsafe_allow_html=True)
 
 
 
