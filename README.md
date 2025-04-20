@@ -17,25 +17,26 @@ The importance of cognitive and mobility activities in slowing down disease prog
 
 ## How we built it
 
-Sure! Here's a more polished and engaging version of your paragraph:
-
-----------
-
 We took a bottom-up approach, beginning with the Self-Administered Gerocognitive Examination (SAGE), which we digitized to form the foundation of our assessment process. Users start by completing the SAGE-based test, which then leads them to a personalized diagnostics dashboard. This dashboard displays their results through intuitive, interactive charts tailored to their unique cognitive profile.
 
 From there, the Gemini API performs an in-depth analysis of the user's responses and recommends one of two tailored pathways: a game hub designed for individuals with normal cognitive performance, or one geared toward users showing signs of cognitive decline. While the system offers data-driven guidance, both patients and their caregivers maintain full autonomy in choosing their path. The experience remains flexible and fun—users can easily add or remove games anytime via the sidebar, adapting the experience to their evolving preferences.
 
-On the **back end**, everything was built with Python. We used JSON to manage data structure, Firebase to create user profiles and seamlessly connect with MongoDB, and MongoDB Atlas to store and retrieve user data for generating real-time visualizations. The Gemini API brings it all together by providing intelligent assessments based on user input.
+On the **back end**, everything was built with Python. We used JSON to manage data structure, Firebase to create user profiles and seamlessly connect with MongoDB, and MongoDB Atlas to store and retrieve user data for generating real-time visualizations. The Gemini API brings it all together by providing customized intelligent assessments based on user test results.
 
 On the **front end**, we used Streamlit to build an interactive and user-friendly interface, enhanced with CSS to ensure a clean and visually appealing experience.
 
 ## ⚔️ Challenges
 
-Originally, we had planned to use Auth0 to create a login and authentication interface. After some technical issues with integrating Auth0 with Streamlit, we opted for a custom sign-in with Firebase. This worked in our favor, as it simplified the process to carry user IDs across the system and facilitated logins.
+Originally, we had planned to use Auth0 to create a login and authentication interface. After some technical issues with integrating Auth0 with Streamlit, we opted for a custom sign-in with Firebase. This worked in our favor, as it simplified the process to carry user IDs across the system and facilitated logins. We also encountered routing issues navigating between pages in the application, which we were able to finally solve by..
 
 ## ⭐ Accomplishments
 
+- Successful Integration of Google Gemini API into our assesment environment seamlessly evaluating users cognition
+- Customizeable home page suited to patients unique needs
+
 ## 🔮 What's Next?
+
+An extension of our application features would be integrating gemini into the game side of applications, to make evaluations based on user performance over time to determine the current and continuing cognitive capacity of the user. Additionally, we could further incorporate gemini across our application as a chatbot assisting users in navigating the site, providing encouraging feedback in the game environment as well as providing real time analytics to caregivers/medical professionals on patient progress.  
 
 ## 📖 References
 
