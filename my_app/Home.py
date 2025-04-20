@@ -37,5 +37,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-if st.button("Start Intake"):
-    st.markdown("<meta http-equiv='refresh' content='0; url=./intake'/>", unsafe_allow_html=True)
+if st.button("Create Account or Log In"):
+    st.markdown("<meta http-equiv='refresh' content='0; url=./account'/>", unsafe_allow_html=True)
+
