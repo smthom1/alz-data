@@ -84,6 +84,7 @@ if st.button('Submit'):
         st.warning("Please enter your name.")
     else:
         form_data = {
+            "user_name": user_name,
             "name": name,
             "date_of_birth": str(dob),
             "education_level": school_level,
