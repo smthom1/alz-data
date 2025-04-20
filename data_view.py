@@ -7,6 +7,32 @@ import os
 import google.generativeai as genai
 from urllib.parse import unquote
 
+## TODO: identify and pull respective user information to get data
+
+st.markdown("""
+    <style>
+        /* Hide sidebar */
+        section[data-testid="stSidebar"] {
+            display: none !important;
+        }
+
+        /* Hide the collapsed sidebar toggle (arrow button) */
+        div[data-testid="collapsedControl"] {
+            display: none !important;
+        }
+
+        /* Adjust the main block to take full width */
+        div[class*="main"] {
+            margin-left: 0 !important;
+        }
+
+        /* Hide top menu hamburger if visible */
+        header {
+            visibility: hidden;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 genai.configure(api_key=os.getenv("API_KEY"))
 models = genai.list_models()
 
@@ -30,13 +56,12 @@ uri = os.getenv("MONGO_URI")
 client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
 
 # Access the database and collection
-db = client["store"]
-collection = db["products"]
+db = client["user_info"]
+collection = db["intake"]
 
 # Fetch all records for the given auth_user
-auth_user_id = "38373892374"  # Replace with actual user ID
+auth_user_id = st.session_state.get("user_name")
 data = list(collection.find({"user_auth": auth_user_id}))
-print(data)
 
 # Convert JSON data to DataFrame
 df = pd.DataFrame(data)
@@ -50,7 +75,7 @@ if "submission_time" in df.columns:
 st.title("User Progress Over Time")
 
 # Select metrics to visualize
-metrics = ["memory_problems", "balance_problems", "depression", "stroke_history.yes"]
+metrics = ["memory_problems", "balance_problems", "depression", "stroke_history", "mini_stroke"]
 
 # Create time-based charts
 for metric in metrics:
@@ -59,13 +84,14 @@ for metric in metrics:
         st.line_chart(df[["submission_time", metric]].set_index("submission_time"))
 
 # Display raw data
-st.subheader("Raw Data")
-st.dataframe(df)
+if auth_user_id in df["user_name"].values:
+    st.subheader("Raw Data")
+    st.dataframe(df[df["user_name"] == auth_user_id])
 
 if st.button("Go back to input form"):
     os.system("streamlit run mongo.py")
 
-# --- Popup AI Assistant in Streamlit (no JS fetch needed) ---
+# --- Popup AI Assistant in Streamlit ---
 
 # Initialize chat state
 if "show_chat" not in st.session_state:
@@ -98,6 +124,13 @@ with st.container():
     if st.button("AI Assistant", key="ai_btn", help="Toggle AI Assistant"):
         st.session_state.show_chat = not st.session_state.show_chat
 
+if st.button("Go to AI Data Analysis"):
+            st.warning("Loading...")
+            st.markdown("""
+                # <meta http-equiv="refresh" content="2;url=/m_normal" />
+                <meta http-equiv="refresh" content="2;url=/testAnalyzer" />
+            """, unsafe_allow_html=True)
+
 # AI popup window
 if st.session_state.show_chat:
     with st.container():
@@ -110,10 +143,13 @@ if st.session_state.show_chat:
                     st.session_state.ai_response = response.text
                 except Exception as e:
                     st.session_state.ai_response = f"Error: {e}"
-
+    
         if st.session_state.ai_response:
             st.markdown("---")
             st.markdown(f"**Response:** {st.session_state.ai_response}")
 
+        
+
         st.markdown("</div>", unsafe_allow_html=True)
 
+        

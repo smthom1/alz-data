@@ -30,7 +30,7 @@ game_base64 = {
 
 # Initialize selected games
 if "selected_games" not in st.session_state:
-    st.session_state.selected_games = list(game_images.keys())[:4]
+    st.session_state.selected_games = list(game_images.keys())[:2]
 
 # Custom CSS
 st.markdown("""
@@ -96,15 +96,15 @@ query_params = st.query_params
 
 if selected_game == "Memory Match":
     st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/memory_tile" />
+        <meta http-equiv="refresh" content="2;url=/impaired_memory_tile" />
     """, unsafe_allow_html=True)
 elif selected_game == "Word Search":
     st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/word_search" />
+        <meta http-equiv="refresh" content="2;url=/impaired_word_search" />
     """, unsafe_allow_html=True)
 elif selected_game == "Sudoku":
     st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/sudoku" />
+        <meta http-equiv="refresh" content="2;url=/impaired_sudoku" />
     """, unsafe_allow_html=True)
 
 # Sidebar
