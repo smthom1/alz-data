@@ -1,19 +1,21 @@
 from google import genai
 import streamlit as sd
+import streamlit as st
 from PIL import Image
 #import pymongo
 from pymongo import MongoClient
+import os
 
 sd.title("Test Analysis")
 
 if __name__ == '__main__':
-    client = genai.Client(api_key="AIzaSyBeDo1R5l12SUk9wWg6ER1mfC_p7XJfeLE")
-    mclient = MongoClient("mongodb+srv://oasanusi:tpQ7eCHBvVIuhOlh@alzdata.ppeltye.mongodb.net/")
+    client = genai.Client(api_key=os.getenv("API_KEY"))
+    mclient = MongoClient(os.getenv("MONGO_URI"))
     db = mclient["user_info"]
     collection = db["diagnostics"]
 
     questions = []
-    user_id = "use_this"
+    user_id = st.session_state.get("user_name")
     # Based on a random collection from MongoDB
     allResults = list(collection.find({"user_name": user_id}))
     sampleResults = allResults[0]
@@ -134,7 +136,6 @@ if __name__ == '__main__':
             left.markdown("Opens intermediate page")
         if right.button("Other Suggestions", use_container_width=True, type="secondary"):
             right.markdown("Opens advanced page")
-
 
 
 

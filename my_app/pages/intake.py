@@ -48,6 +48,7 @@ db = client["user_info"]
 collection = db["intake"]
 
 # Intake questions
+user_name = st.session_state.get("user_name")
 name = st.text_input("Name:")
 dob = st.text_input("Date of Birth:")
 school_level = st.text_input("How far did you get in school?")
@@ -84,6 +85,7 @@ if st.button('Submit'):
         st.warning("Please enter your name.")
     else:
         form_data = {
+            "submission_time": datetime.datetime.now(),  # Added timestamp for tracking, "submission_time"
             "user_name": user_name,
             "name": name,
             "date_of_birth": str(dob),
