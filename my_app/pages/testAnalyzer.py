@@ -25,117 +25,83 @@ if __name__ == '__main__':
     sd.subheader("Cognitive Analysis Test:")
     # Cognitive Assessment Analysis
     response = client.models.generate_content(
-        model="gemini-2.0-flash", contents="The User had taken a test similar to the MMSE and SAGE (Self-Administered Gerocognitive Examination) tests. Give a brief introduction to what the given test is"
+        model="gemini-2.0-flash", contents="Briefly define what MMSE and SAGE (Self-Administered Gerocognitive Examination) tests are"
     )
+    questions.append(response.text)
     sd.write(response.text)
 
     #Question Section
     #Dictionary parsing test
     sd.write("Question One Results:")
-    questionDivider = client.chats.create(model='gemini-2.0-flash')
-    q = questionDivider.send_message(
-        message="These next two entries are from the MMSE test. Are they similar to today's date which is April 19, 2025?:" + sampleResults["memory_test_m"] + " " + sampleResults["memory_test_d"] + "."
+    response = client.models.generate_content(
+        model="gemini-2.0-flash", contents="These next two entries are from the MMSE test. Are they similar to today's date which is April 19, 2025?:" + str(sampleResults["memory_test_m"]) + " " + str(sampleResults["memory_test_d"]) + "."
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    # sd.write("Question 2a Results:")
-    # q = client.models.generate_content(
-    #     model='gemini-2.0-flash',
-    #     contents=[
-    #         'Is the object in the image similar to a ' + str(sampleResults["image_1_answer"]) + '?',
-    #         Image.open("Wreathe.png")
-    #     ]
-    # )
-    # questions.append(q.text)
-    # sd.caption(q.text)
-
-    # sd.write("Question 2b Results:")
-    # q = client.models.generate_content(
-    #     model='gemini-2.0-flash',
-    #     contents=[
-    #         'Is the object in the image similar to a ' + sampleResults["image_2_answer"] + '?',
-    #         Image.open("Volcano.png")
-    #     ]
-    # )
-    # questions.append(q.text)
-    # sd.caption(q.text)
-
-    sd.write("Question 3a Results:")
-    q = questionDivider.send_message(
-        message="Is this an accurate similarity for watches and rulers? " + sampleResults["similarity_qs"] + "."
+    sd.write("Question 2a:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Is this an accurate similarity for watches and rulers? " + str(sampleResults["similarity_qs"]) + "."
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    sd.write("Question 3b Results:")
-    q = questionDivider.send_message(
-        message="Is this a good response for the number of nickels in 60 cents:" + sampleResults["similarity_qs_2"] + "?"
+    sd.write("Question 2b:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Is this a good response for the number of nickels in 60 cents:" + str(sampleResults["similarity_qs_2"]) + "?"
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    sd.write("Question 3c Results:")
-    q = questionDivider.send_message(
-        message="Is this the same as $6.55:" + sampleResults["similarity_qs_3"] + "?"
+    sd.write("Question 2c:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Is this a good response for the number of nickels in 60 cents:" + str(sampleResults["similarity_qs_2"]) + "?"
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    sd.write("Question 4 Results:")
-    #This might give an error
-    q = questionDivider.send_message(
-        message=sampleResults["animal_names"]
+    sd.write("Question 3:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Is this the same as $6.55:" + str(sampleResults["similarity_qs_3"]) + "?"
     )
-    q = questionDivider.send_message(
-        message="Given the list, how many are considered animals? How would you describe the other input? State this in a positive way"
-    )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    sd.write("Question 5 Results:")
-    q = questionDivider.send_message(
-        message="Given this correct answer key sequence of values" + str(sampleResults["sequence_answer"]) + ", are the user-made values in (" + str(sampleResults["sequence_qs_2"])+ ") similar to the correct answer?"
+    sd.write("Question 4:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Given the list " + str(sampleResults["animal_names"]) + ", how many are considered animals? How would you describe the other input? State this in a positive way"
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    sd.write("Question 6 Results:")
-    q = questionDivider.send_message(
-        message="Did the user write i am done: " + sampleResults["similarity_qs_3"] + "?"
+    sd.write("Question 5:")
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents="Did the user write i am done: " + str(sampleResults["similarity_qs_3"]) + "?"
     )
-    questions.append(q.text)
-    sd.caption(q.text)
+    questions.append(response.text)
+    sd.write(response.text)
 
-    #Score
     sd.write("Final Score:")
-    q = questionDivider.send_message(
-        message = questions
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents = "Given the following input: " + str(questions) + "As a number value only, rate the user's performance on a scale of 0 to 30"
     )
-    q = questionDivider.send_message(
-        message= "As a number value only, rate the user's performance on a scale of 0 to 30"
-    )
-    score = q.text
+    score = response.text
     sd.write(score)
 
-    q = questionDivider.send_message(
-        message= "Write out the score written as 1 number only"
-    )
-    score = q.text
-    sd.subheader("Final score: " + score)
 
-    q = questionDivider.send_message(
-        message = "In two words, based on the score given, state whether the user is either Cognitively Impaired or Cognitively Sound"
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents = "In two words, based on the score " + score + " of 30 given, state whether the user is either Cognitively Impaired or Cognitively Sound"
     )
-    mode = q.text
+    mode = response.text
     sd.write(mode)
-
-    if(mode == "Cognitively Impaired"):
-        left, right = sd.columns(2)
-        if left.button("Suggestions for Impaired Cognition", use_container_width=True, type="primary"):
-            left.markdown("Opens intermediate page")
-        if right.button("Other Suggestions", use_container_width=True, type="secondary"):
-            right.markdown("Opens advanced page")
 
 if st.button("Go to Game Hub for cognitively impaired"):
             st.markdown("""
