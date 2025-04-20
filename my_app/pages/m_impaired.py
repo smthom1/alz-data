@@ -7,10 +7,10 @@ image_dir = Path("pics")
 
 # Define your games and image filenames
 game_images = {
-    "Memory Match": "mem1.png",
-    "Word Puzzle": "mem1.png",
-    "Sudoku": "mem1.png",
-    "Trivia": "mem1.png",
+    "Memory Match": "question.png",
+    "Word Search": "words.png",
+    "Sudoku": "sudoku.png",
+    "Trivia": "trivia.png",
     "Card Game": "mem1.png",
     "Chess": "mem1.png",
     "Color Matching": "mem1.png",
@@ -89,10 +89,23 @@ for i, game in enumerate(st.session_state.selected_games):
 selected_game = st.session_state.get("selected_game", None)
 query_params = st.query_params
 
-if selected_game:
-    st.success(f"You selected: {selected_game}")
-elif "selected_game" in query_params:
-    st.session_state.selected_game = query_params["selected_game"][0]
+# if selected_game:
+#     st.success(f"You selected: {selected_game}")
+# elif "selected_game" in query_params:
+#     st.session_state.selected_game = query_params["selected_game"][0]
+
+if selected_game == "Memory Match":
+    st.markdown("""
+        <meta http-equiv="refresh" content="2;url=/impaired_memory" />
+    """, unsafe_allow_html=True)
+elif selected_game == "Word Search":
+    st.markdown("""
+        <meta http-equiv="refresh" content="2;url=/impaired_word_search" />
+    """, unsafe_allow_html=True)
+elif selected_game == "Sudoku":
+    st.markdown("""
+        <meta http-equiv="refresh" content="2;url=/impaired_sudoku" />
+    """, unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:

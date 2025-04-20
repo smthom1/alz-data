@@ -7,8 +7,6 @@ import os
 import google.generativeai as genai
 from urllib.parse import unquote
 
-## TODO: identify and pull respective user information to get data
-
 st.markdown("""
     <style>
         /* Hide sidebar */
@@ -83,10 +81,10 @@ for metric in metrics:
         st.subheader(f"Trend of {metric} Over Time")
         st.line_chart(df[["submission_time", metric]].set_index("submission_time"))
 
-# Display raw data
-if auth_user_id in df["user_name"].values:
-    st.subheader("Raw Data")
-    st.dataframe(df[df["user_name"] == auth_user_id])
+# # Display raw data
+# if auth_user_id in df["user_name"].values:
+#     st.subheader("Raw Data")
+#     st.dataframe(df[df["user_name"] == auth_user_id])
 
 if st.button("Go back to input form"):
     os.system("streamlit run mongo.py")
@@ -153,6 +151,3 @@ if st.session_state.show_chat:
         st.markdown("</div>", unsafe_allow_html=True)
 
         
-
-
-

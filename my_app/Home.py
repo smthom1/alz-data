@@ -4,7 +4,7 @@ from PIL import Image
 import os
 from streamlit_extras.switch_page_button import switch_page
 
-image_dir = Path("pics")
+image_path = Path("pics/HAPP2.png")
 
 st.set_page_config(
     initial_sidebar_state="collapsed", layout="wide"
@@ -12,6 +12,12 @@ st.set_page_config(
 
 
 st.title("Welcome to the Happi!")
+
+if image_path.exists():
+    image = Image.open(image_path)
+    st.image(image, use_container_width=True)
+else:
+    st.error(f"Image not found at: {image_path.resolve()}")
 
 st.markdown("""
     <style>

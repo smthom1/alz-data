@@ -1,20 +1,23 @@
 import streamlit as st
 from pathlib import Path
 import base64
+from PIL import Image
+import os
 
 # Path to your images
 image_dir = Path("pics")
 
 # Define your games and image filenames
 game_images = {
-    "Memory Match": "question.png",
-    "Word Search": "words.png",
-    "Sudoku": "sudoku.png",
-    "Trivia": "trivia.png",
+    "Memory Match": "mem1.png",
+    "Word Search": "mem1.png",
+    "Sudoku": "mem1.png",
+    "Trivia": "mem1.png",
     "Card Game": "mem1.png",
     "Chess": "mem1.png",
     "Color Matching": "mem1.png",
     "Maze Solver": "mem1.png"
+
 }
 
 # Helper to convert local image to base64 string
@@ -30,7 +33,7 @@ game_base64 = {
 
 # Initialize selected games
 if "selected_games" not in st.session_state:
-    st.session_state.selected_games = list(game_images.keys())[:4]
+    st.session_state.selected_games = list(game_images.keys())[:2]
 
 # Custom CSS
 st.markdown("""
@@ -70,42 +73,14 @@ st.markdown("""
 st.markdown("<h1 style='text-align: center;'>📱 Game Hub</h1>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align: center; color: gray;'>Tap a Game to Play</h3><br>", unsafe_allow_html=True)
 
-# Create dynamic grid
-cols = st.columns(2)
-for i, game in enumerate(st.session_state.selected_games):
-    with cols[i % 2]:
-        b64_img = game_base64[game]
-        button_html = f"""
-        <form action="" method="post">
-            <button class="img-card" name="selected_game" value="{game}" type="submit">
-                <img src="data:image/png;base64,{b64_img}" alt="{game}">
-                <div class="img-label">{game}</div>
-            </button>
-        </form>
-        """
-        st.markdown(button_html, unsafe_allow_html=True)
 
-# Handle game selection
-selected_game = st.session_state.get("selected_game", None)
-query_params = st.query_params
-
-# if selected_game:
-#     st.success(f"You selected: {selected_game}")
-# elif "selected_game" in query_params:
-#     st.session_state.selected_game = query_params["selected_game"][0]
-
-if selected_game == "Memory Match":
-    st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/memory_tile" />
-    """, unsafe_allow_html=True)
-elif selected_game == "Word Search":
-    st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/word_search" />
-    """, unsafe_allow_html=True)
-elif selected_game == "Sudoku":
-    st.markdown("""
-        <meta http-equiv="refresh" content="2;url=/sudoku" />
-    """, unsafe_allow_html=True)
+# Button below the image
+if st.button("Play Sudoku"):
+    st.switch_page("pages/impaired_sudoku.py")
+if st.button("Play Memory Match"):
+    st.switch_page("pages/impaired_memory.py")
+if st.button("Play Word Search"):
+    st.switch_page("pages/impaired_word_search.py")
 
 # Sidebar
 with st.sidebar:
