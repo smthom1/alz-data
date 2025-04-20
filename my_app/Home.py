@@ -1,6 +1,15 @@
+from pathlib import Path
 import streamlit as st
+from PIL import Image
+import os
+from streamlit_extras.switch_page_button import switch_page
 
-st.set_page_config(initial_sidebar_state="collapsed", page_title="Welcome", layout="wide")
+image_dir = Path("pics")
+
+st.set_page_config(
+    initial_sidebar_state="collapsed", layout="wide"
+)
+
 
 st.title("Welcome to the Happi!")
 

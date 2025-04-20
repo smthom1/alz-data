@@ -124,6 +124,12 @@ with st.container():
     if st.button("AI Assistant", key="ai_btn", help="Toggle AI Assistant"):
         st.session_state.show_chat = not st.session_state.show_chat
 
+if st.button("Go to Game Hub"):
+            st.warning("Loading...")
+            st.markdown("""
+                <meta http-equiv="refresh" content="2;url=/m_normal" />
+            """, unsafe_allow_html=True)
+
 # AI popup window
 if st.session_state.show_chat:
     with st.container():
@@ -136,10 +142,16 @@ if st.session_state.show_chat:
                     st.session_state.ai_response = response.text
                 except Exception as e:
                     st.session_state.ai_response = f"Error: {e}"
-
+    
         if st.session_state.ai_response:
             st.markdown("---")
             st.markdown(f"**Response:** {st.session_state.ai_response}")
 
+        
+
         st.markdown("</div>", unsafe_allow_html=True)
+
+        
+
+
 

@@ -49,7 +49,7 @@ collection = db["intake"]
 
 # Intake questions
 name = st.text_input("Name:")
-dob = st.date_input("Date of Birth:", value=None)
+dob = st.text_input("Date of Birth:")
 school_level = st.text_input("How far did you get in school?")
 gender = st.radio("I am a", options=["", "Man", "Woman", "Other"], index=0)
 ethnicity = st.radio("Ethnicity:", ["", "Asian", "Black", "Hispanic", "White", "Other"], index=0)
