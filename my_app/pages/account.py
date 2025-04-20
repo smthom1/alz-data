@@ -72,7 +72,7 @@ def app():
         st.info(f"You're logged in as `{st.session_state['user_id']}`")
         st.session_state.account_complete = True
         # You can replace this with navigation logic
-        if st.button("Go to Intake Form"):
+        if st.button("Go to Data"):
             st.markdown("""
                 <meta http-equiv="refresh" content="2;url=/data_view" />
             """, unsafe_allow_html=True)
