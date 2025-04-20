@@ -50,6 +50,8 @@ client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
 db = client["user_info"]
 collection = db["diagnostics"]
 
+user_name = st.session_state.get("user_name")
+
 # Fetch all records for the given auth_user
 
 user_id= "sample_user"  # Replace with actual user ID
@@ -204,7 +206,7 @@ sequence_answer_1 = "sequence"  # This should be the actual answer selected by t
 sequence_answer_2 = "sequence_2"  # Similarly, extract this from the user input
 if st.button('Submit and see results'):
     form_data = {
-        "user_id": "sample_user", 
+        "user_name": user_name,
         "current_month": current_month,  
         "current_day": current_day,      
         "current_year": current_year,    
@@ -225,7 +227,7 @@ if st.button('Submit and see results'):
 
     collection.insert_one(form_data)
     st.success("Your answers has been succesfully submitted! Please move on to next page to see the results.")
-    # create a button for "results button"
+    st.session_state["form_data"] = form_data
 
     st.markdown("""
             <meta http-equiv="refresh" content="2;url=/data_view" />
