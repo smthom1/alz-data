@@ -46,14 +46,17 @@ def flip_tile(idx):
 st.markdown("""
     <style>
         div[class^="stButton"] > button {
-            height: 80px;
-            width: 80px;
-            font-size: 36px;
-            padding: 0;
-            margin: 4px;
+            height: 100px;
+            width: 100px;
+            font-size: 64px !important;
+            line-height: 100px !important;
+            padding: 0 !important;
+            margin: 2px !important;
+            text-align: center !important;
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 st.title("🧠 Memory Tile Game")
 st.caption("Flip two cards. Mismatched cards flip back on the next click!")
