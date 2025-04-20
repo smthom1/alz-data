@@ -4,6 +4,7 @@ import streamlit as st
 import datetime
 from PIL import Image
 import os
+from streamlit_extras.switch_page_button import switch_page
 
 # To Do:
 # Sending date what sophia has said
@@ -14,7 +15,7 @@ st.title('Welcome to your Personalized Alzheimer Care Center!')
 st.write("Please answer the following questions to help us to customize best treatment for you:")
 st.write("The following information is confidential and will not be shared with anyone.")
 #  MongoDB connection string
-uri = ""
+uri = os.getenv("MONGO_URI")
 
 # Create MongoClient with the certifi certificates
 client = pymongo.MongoClient(uri, tlsCAFile=certifi.where())
@@ -79,6 +80,6 @@ if st.button('Submit'):
         st.session_state.intake_complete = True
         st.success("Your answer has been successfully submitted! Please move on to test questions.")
         
-        # create a button for"move on the next
-        if st.button("Move on to Test Questions"):
-            st.switch_page("diagnostics.py")  # This will switch to the page named 
+        #create a button for move on the next
+        # if st.button("Move on to Test Questions"):
+        #     st.switch_page("diagnostics.py") 
