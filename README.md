@@ -27,23 +27,4 @@ On the **front end**, we used Streamlit to build an interactive and user-friendl
 
 ## ⚔️ Challenges
 
-Originally, we had planned to use Auth0 to create a login and authentication interface. After some technical issues with integrating Auth0 with Streamlit, we opted for a custom sign-in with Firebase. This worked in our favor, as it simplified the process to carry user IDs across the system and facilitated logins. We also encountered routing issues navigating between pages in the application, which we were able to finally solve by...
-
-## ⭐ Accomplishments
-
-- Successful Integration of Google Gemini API into our assesment environment seamlessly evaluating users cognition
-- Customizeable home page suited to patients unique needs
-
-## 🔮 What's Next?
-
-An extension of our application features would be integrating gemini into the game side of applications, to make evaluations based on user performance over time to determine the current and continuing cognitive capacity of the user. Additionally, we could further incorporate gemini across our application as a chatbot assisting users in navigating the site, providing encouraging feedback in the game environment as well as providing real time analytics to caregivers/medical professionals on patient progress.  
-
-## 📖 References
-
-<sup>1</sup> Scharre, D. W., Chang, S. I., Nagaraja, H. N., & Kataki, M. (2021). Self-administered gerocognitive examination (SAGE): A new approach to detecting cognitive decline. Journal of Alzheimer's Disease, 79(2), 537-546.
-
-<sup>2</sup> Jain, G., & Kumar, V. (2025). Diagnostic accuracy of the Self-Administered Gerocognitive Examination (SAGE) in detecting mild cognitive impairment and dementia. Journal of Clinical and Experimental Neuropsychology, 47(1), 34-42.
-
-<sup>3</sup>  Alshehhi, M., Almazrouei, S., & Alkaabi, A. (2024). Development and validation of a digital version of the Self-Administered Gerocognitive Examination (SAGE). Journal of Medical Systems, 48(10), 2105.
-
-<sup>4</sup>  François Dartigues, J., Foubert-Samier, A., & Helmer, C. (2013). Leisure activities and the risk of dementia in the elderly: A systematic review. Journal of Alzheimer's Disease, 35(2), 257-266.
+Originally, we had planned to use Auth0 to create a login and authentication interface. After some technical issues with integrating Auth0 with Streamlit, we opted for a custom sign-in with Firebase. This worked in our favor, as it simplified the process to carry user IDs across the system and facilitated logins. We also encountered routing issues navigating between pages in the application, which we were able to finally solve by..
