@@ -1,4 +1,4 @@
-# Health and Alzheimer's Patient Prediction Interface (HAPPI)
+# [Health and Alzheimer's Patient Prediction Interface (HAPPI)](https://devpost.com/software/happi-1jh72r?ref_content=my-projects-tab&ref_feature=my_projects)
 
 The Health and Alzheimer's Patient Prediction Interface (HAPPI) provides a **customizable platform** with **cognitive and mobility activities** that supports those suffering from Alzheimer's Disease and dementia alongside their caregivers, **enhancing quality of life and providing actionable insights**.
 
